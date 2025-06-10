@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkings Account Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(  rgb(13, 13, 56),rgb(58, 58, 96));
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
+ 
+        header {
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+ 
+        .logo {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #437aae;
+            margin-left: 35px;
+        }
+ 
+        .logo span {
+            color: #222;
+        }
+ 
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+ 
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+ 
+        nav a:hover {
+            color: #437aae;
+        }
+ 
+        form {
+            background: white;
+            padding: 50px 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 700px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+ 
+        h1 {
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+ 
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+ 
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 9px;
+            margin-bottom: 20px;
+            border: 1.5px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+ 
+        .form-row {
+            display: flex;
+            gap: 50px;
+        }
+ 
+        .form-row .form-group {
+            flex: 1;
+        }
+ 
+        button {
+            background-color: #437aae;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            transition: background-color 0.3s ease;
+        }
+ 
+        button:hover {
+            background-color: #005bb5;
+        }
+ 
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #437aae;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+ 
+        .chatbot-popup {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            flex-direction: column;
+        }
+ 
+        .chat-header {
+            background: #437aae;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+ 
+        .chat-messages {
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            flex: 1;
+        }
+ 
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+ 
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+ 
+        .chat-input button {
+            background: #437aae;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+ 
+        .chat-input button:hover {
+            background: #005bb5;
+        }
+    </style>
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">The <span>Investment</span><span> Edge</span></div>
+        <nav>
+            <a href="home1.html">Home</a>
+            <a href="#">Credit Cards</a>
+            <a href="Accounts.html">Accounts</a>
+            <a href="#">Loans</a>
+        </nav>
+    </header>
+ 
+    <!-- Form -->
+    <form action="#" method="post">
+        <h1>Checkings Account</h1>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="permanentAddress">Permanent Address</label>
+                <input type="text" id="permanentAddress" name="permanentAddress" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="birthDate">Birth date (YYYY-MM-DD)</label>
+                <input type="date" id="birthDate" name="birthDate" required>
+            </div>
+            <div class="form-group">
+                <label for="zipCode">Zip Code</label>
+                <input type="text" id="zipCode" name="zipCode" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" required>
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+ 
+    <button class="chatbot-button" id="chatbotButton">🤖</button>
+ 
+    <!-- Chatbot popup -->
+    <div class="chatbot-popup" id="chatbotPopup">
+        <div class="chat-header">We’re Here to Help</div>
+        <div class="chat-messages" id="chatMessages">
+            <p>Hello! How can I assist you today?</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your query here...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .logo {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #222;
+        }
+ 
+        .logo span {
+            color: #0f518f;
+        }
+ 
+        nav {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #437aae;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 50vh;
+            background-image: url('home1.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .content h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .account-options {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .account-card {
+            background: #e6e0e0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            color: #353535;
+        }
+
+        .account-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+        }
+
+        .account-card p {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .account-card button {
+            color: white;
+            background-color: #d4823f;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .account-card button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">The <span>Investment</span><span> Edge</span></div>
+        <nav>
+            <a href="home1.html">Home</a>
+            <a href="insurance.html">Insurance</a>
+            <a href="Accounts.html">Accounts</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero-image"></div>
+
+    <!-- Content Section -->
+    <section class="content">
+        <h2>Explore Our Account Options</h2>
+        <div class="account-options">
+            <div class="account-card">
+                <h3>Savings Account</h3>
+                <p>Easy, Anytime Access.</p>
+                <ul>
+                    <li>Convenient ways to pay</li>
+                    <li>24/7 Security</li>
+                    <li>Smart money management tools</li>
+                    <li>Fraud protection</li>
+                </ul>
+                <button id="savingsAccountBtn">Apply Now</button>
+            </div>
+            <div class="account-card">
+                <h3>Checking Account</h3>
+                <p>Manage your daily transactions</p>
+                <ul>
+                    <li>Tiered savings</li>
+                    <li>Rewarding relationships</li>
+                    <li>Easy ways to save</li>
+                    <li>Cash-back deals</li>
+                </ul>
+                <button id="checkingAccountBtn">Apply Now</button>
+            </div>
+            <div class="account-card">
+                <h3>Fixed Deposit</h3>
+                <p>Get higher returns on your investments</p>
+                <ul>
+                    <li>Tax Advantages</li>
+                    <li>Flexible Contributions</li>
+                    <li>Banking free transaction fees</li>
+                    <li>Fee-free banking for customers 66+</li>
+                </ul>
+                <button id="fixedDepositBtn">Apply Now</button>
+            </div>
+        </div>
+    </section>
+    <button class="chatbot-button" id="chatbotButton">🤖</button>
+
+    <!-- Chatbot popup -->
+<!-- Chatbot popup -->
+<div class="chatbot-popup" id="chatbotPopup">
+    <div class="chat-header">We’re Here to Help</div>
+    <div class="chat-messages" id="chatMessages">
+        <div class="message-container bot"><p>Hello! How can I assist you today?</p></div>
+    </div>
+    <!-- Auto-Suggestion Buttons -->
+    <div class="suggestions-container">
+        <button class="suggestion-btn" onclick="fillChatInput('What is the best life insurance for families?')">Best Life Insurance</button>
+        <button class="suggestion-btn" onclick="fillChatInput('How do I claim my insurance?')">Claim Insurance</button>
+        <button class="suggestion-btn" onclick="fillChatInput('What’s the difference between term & whole life insurance?')">Term vs Whole Life</button>
+        <button class="suggestion-btn" onclick="fillChatInput('Which health policy covers pre-existing conditions?')">Pre-existing Conditions</button>
+        <button class="suggestion-btn" onclick="fillChatInput('What is the average cost of car insurance?')">Car Insurance Cost</button>
+        <button class="suggestion-btn" onclick="fillChatInput('Can I get travel insurance for multiple trips?')">Travel Insurance</button>
+    </div>
+
+    <!-- Chat Messages -->
+  
+
+    <!-- Chat Input Field -->
+    <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Type your query here...">
+        <button id="sendButton">Send</button>
+    </div>
+</div>
+    <script>
+        document.getElementById('savingsAccountBtn').addEventListener('click', function() {
+            window.location.href = 'savings.html';
+        });
+
+        document.getElementById('checkingAccountBtn').addEventListener('click', function() {
+            window.location.href = 'checking.html';
+        });
+
+        document.getElementById('fixedDepositBtn').addEventListener('click', function() {
+            window.location.href = 'fixed.html';
+        });
+    </script>
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>

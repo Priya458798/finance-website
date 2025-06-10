@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Investment Edge</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://assets.adobedtm.com/81adfcd42355/c48862186763/launch-95e6ae429f23-development.min.js" async></script>
+    <style>
+        /* Health Insurance Popup Styles */
+        .health-insurance-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+        }
+
+        .health-insurance-modal {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            /* width: 350px; */
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .health-insurance-modal .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .health-insurance-modal h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .health-insurance-modal .form-group {
+            margin-bottom: 15px;
+        }
+
+        .health-insurance-modal label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .health-insurance-modal input,
+        .health-insurance-modal select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .health-insurance-modal button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0097ee;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        .health-insurance-modal button:hover {
+            background-color: #6292c0;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .logo span {
+            color: #0f518f;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #6292c0;
+        }
+
+        .sign-in {
+            padding: 8px 16px;
+            /* increased from 8px to 10px */
+            background-color: #14406c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .sign-in:hover {
+            background-color: #6292c0;
+        }
+
+        .hero-image {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            background-image: url('2.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Feature Section */
+        .features-section {
+      display: flex;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 50px 20px;
+      background-color: #e9f2fa;
+    }
+
+        .feature-card {
+            background-color: #ffffff;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .card-image1 {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+        /* Popular Services and Offers Section */
+        .popular-services {
+            background-color: #e9f2fa;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .popular-services h2 {
+            font-size: 2.5em;
+            color: #000000;
+            margin-bottom: 40px;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .offer-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            height: 250px;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .offer-card h3 {
+            font-size: 1.4em;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .offer-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .offer-card .offer-icon {
+            font-size: 3em;
+            color: #437aae;
+            margin-bottom: 20px;
+        }
+
+        /* Sign In / Sign Up Form Styles */
+        .sign-in-form,
+        .sign-up-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .sign-in-modal,
+        .sign-up-modal {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sign-in-modal input,
+        .sign-up-modal input {
+            width: 93%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .sign-in-modal button,
+        .sign-up-modal button {
+            width: 100%;
+            padding: 10px;
+            background-color: #437aae;
+            /* Changed from #437aae */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .sign-in-modal button:hover,
+        .sign-up-modal button:hover {
+            background-color: #6292c0;
+        }
+
+        .sign-up-modal {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 350px;
+            max-height: 80vh;
+            /* Ensures modal does not exceed screen height */
+            overflow-y: auto;
+            /* Enables vertical scrolling */
+            overflow-x: hidden;
+            /* Prevents horizontal scrolling */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+            /* Ensures text does not wrap into horizontal scroll */
+        }
+
+        /* Ensure all input fields fit properly */
+        .sign-up-modal input,
+        .sign-up-modal select {
+            width: 100%;
+            /* Ensures full width inside the modal */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            /* Prevents overflowing */
+        }
+
+        /* Prevents long text from forcing horizontal scroll */
+        .sign-up-modal form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #12abdb;
+            /*  from background-color: #437aae; */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-subscribe {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #0f878a;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .footer-subscribe:hover {
+            background-color: #437aae;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        .social-links a:hover {
+            color: #6292c0;
+        }
+    </style>
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">The <span>Investment</span><span> Edge</span></div>
+        <nav>
+            <a href="insurance.html">Insurance</a>
+            <a href="Accounts.html">Accounts</a>
+        </nav>
+        <span id="signInButton" class="sign-in">Sign in</span>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero-image"></div>
+
+    <!-- Feature Section -->
+  <section class="features-section">
+    <div class="feature-card">
+      <img src="atm-card.png" alt="Card Image" class="card-image1" />
+      <h3>Credit Cards</h3>
+      <p>Find the best credit cards with unbeatable rewards and benefits!</p>
+    </div>
+    <div class="feature-card">
+      <img src="health-insurance.png" alt="Card Image" class="card-image1" />
+      <h3>Insurance</h3>
+      <p>
+        Get the right coverage for your needs and protect your loved ones!
+      </p>
+    </div>
+    <div class="feature-card">
+      <img src="loan.png" alt="Card Image" class="card-image1" />
+      <h3>Loans</h3>
+      <p>Access personal loans with the lowest interest rates available!</p>
+    </div>
+    <div class="feature-card">
+      <img src="piggy-bank.png" alt="Card Image" class="card-image1" />
+      <h3>Savings</h3>
+      <p>Grow your wealth effortlessly with our flexible savings plans!</p>
+    </div>
+    <div class="feature-card">
+      <img src="retirement.png" alt="Card Image" class="card-image1" />
+      <h3>Pension</h3>
+      <p>
+        Secure your future with our tailored pension plans—peace of mind
+        starts today!
+      </p>
+    </div>
+  </section>
+
+    <!-- Popular Services and Offers Section -->
+    <section class="popular-services">
+        <h2>Popular Services and Offers</h2>
+        <div class="services-container">
+            <div class="offer-card">
+                <div class="offer-icon">💳</div>
+                <h3>Cashback Offer</h3>
+                <p>Enjoy up to 5% cashback on select credit cards. Start saving today!</p>
+            </div>
+            <div class="offer-card">
+                <div class="offer-icon">🛡️</div>
+                <h3>Special Insurance Discounts</h3>
+                <p>Get exclusive discounts on life and health insurance policies.</p>
+            </div>
+            <div class="offer-card">
+                <div class="offer-icon">💰</div>
+                <h3>Personal Loan Benefits</h3>
+                <p>Receive additional benefits with personal loans at competitive rates.</p>
+            </div>
+        </div>
+    </section>
+    <!-- ✅ Full-Screen Popup for Chart -->
+    <div id="chartPopup" class="chart-popup">
+        <div class="chart-popup-content">
+            <span class="close-chart" onclick="closeChartPopup()">✖</span>
+            <!-- <h2>📊 Visualization </h2> -->
+            <canvas id="chartPopupCanvas"></canvas>
+        </div>
+    </div>
+
+    <!-- Footer -->
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 The Investment Edge. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div class="footer-subscribe">Subscribe to Our Newsletter</div>
+  </footer>
+
+    <!-- Sign In Form Modal -->
+    <div class="sign-in-form" id="signInForm">
+        <div class="sign-in-modal">
+            <span class="close-btn" onclick="closeSignInForm()">X</span>
+            <h2>Sign In</h2>
+            <form id="signInFormSubmit" onsubmit="return validateSignIn()">
+                <input type="email" id="signInEmail" placeholder="Email" required>
+                <input type="password" id="signInPassword" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="signUpLink">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Sign Up Form Modal -->
+    <!-- Sign-Up Form Modal -->
+    <div class="sign-up-form" id="signUpForm">
+        <div class="sign-up-modal">
+            <span class="close-btn" onclick="closeSignUpForm()">X</span>
+            <h2>Sign Up</h2>
+            <div class="form-content">
+                <form id="signUpFormSubmit" onsubmit="return validateSignUp()">
+
+                    <!-- Basic Details -->
+                    <input type="email" id="signUpEmail" placeholder="Email" required>
+                    <input type="password" id="signUpPassword" placeholder="Password" required>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+                    <!-- Personal Details -->
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                    <input type="date" id="dob" placeholder="Date of Birth" required>
+
+                    <!-- Marital & Family Details -->
+                    <select id="maritalStatus" required>
+                        <option value="">Select Marital Status</option>
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="divorced">Divorced</option>
+                        <option value="widowed">Widowed</option>
+                    </select>
+                    <input type="number" id="dependents" placeholder="Number of Dependents" required>
+
+                    <!-- Employment & Financial Details -->
+                    <input type="text" id="employmentStatus"
+                        placeholder="Employment Status (Employed, Self-employed, Unemployed)" required>
+                    <input type="text" id="occupation" placeholder="Occupation">
+                    <input type="text" id="incomeRange" placeholder="Estimated Annual Income (₹)">
+
+                    <!-- Address Details -->
+                    <input type="text" id="streetAddress" placeholder="Street Address" required>
+                    <input type="text" id="city" placeholder="City" required>
+                    <input type="text" id="postalCode" placeholder="Postal Code" required>
+                    <select id="country" required>
+                        <option value="">Select Country</option>
+                        <option value="Peru">Peru</option>
+                        <option value="USA">United States</option>
+                        <option value="Canada">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="India">India</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <!-- Lifestyle Factors -->
+                    <select id="smoking" required>
+                        <option value="">Do you smoke?</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <select id="alcohol" required>
+                        <option value="">Do you consume alcohol regularly?</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                    <!-- Insurance Interests -->
+                    <!-- <select id="insuranceInterest" required>
+                    <option value="">What type of insurance are you most interested in?</option>
+                    <option value="life">Life Insurance</option>
+                    <option value="health">Health Insurance</option>
+                    <option value="auto">Auto Insurance</option>
+                    <option value="home">Home Insurance</option>
+                    <option value="travel">Travel Insurance</option>
+                </select> -->
+
+                    <!-- Submit Button -->
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Health Insurance Details Popup -->
+    <div class="health-insurance-popup" id="healthInsurancePopup" style="display: none;">
+        <div class="health-insurance-modal">
+            <span class="close-btn" onclick="closeHealthInsurancePopup()">X</span>
+            <h2>To provide you with the best insurance options, we may require a few more details about you</h2>
+            <form id="healthInsuranceForm" onsubmit="return submitHealthInsuranceForm(event)">
+
+                <!-- Basic Health/Policy Details -->
+                <!-- <h3>Basic Health/Policy Details</h3> -->
+                <div class="form-group">
+                    <label for="existingInsurance">Do you have any existing insurance with this company?</label>
+                    <select id="existingInsurance" required>
+                        <option value="">Select an option</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="form-group" id="policyNumberGroup" style="display: none;">
+                    <label for="policyNumber">Please enter your policy number:</label>
+                    <input type="text" id="policyNumber" placeholder="Policy Number">
+                </div>
+                <!-- Basic Policy Selection -->
+                <h3>Policy Selection</h3>
+                <div class="form-group">
+                    <label for="policyType">Policy Type Preference:</label>
+                    <select id="policyType" required>
+                        <option value="">Select an option</option>
+                        <option value="with_returns">With Returns</option>
+                        <option value="without_returns">Without Returns (Pure Term)</option>
+                    </select>
+                </div>
+
+                <!-- Basic Coverage Details -->
+                <h3>Coverage Details</h3>
+                <div class="form-group">
+                    <label for="sumInsured">Sum Insured:</label>
+                    <input type="number" id="sumInsured" required min="1">
+                </div>
+                <div class="form-group">
+                    <label for="coverageYears">Coverage Duration (years):</label>
+                    <input type="number" id="coverageYears" required min="1">
+                </div>
+
+                <!-- Payment & Premium Details -->
+                <h3>Premium & Payment Preferences</h3>
+                <div class="form-group">
+                    <label for="premiumPaymentTerm">Premium Payment Term (years):</label>
+                    <input type="number" id="premiumPaymentTerm" required min="1"
+                        placeholder="Enter how many years you will pay premiums">
+                </div>
+                <div class="form-group">
+                    <label for="paymentFrequency">Preferred Payment Frequency:</label>
+                    <select id="paymentFrequency" required>
+                        <option value="">Select an option</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="annualBudget">Estimated Annual Premium Budget (₹):</label>
+                    <input type="number" id="annualBudget" required min="0">
+                </div>
+
+                <!-- Purpose & Future Planning -->
+                <h3>Purpose & Future Requirements</h3>
+                <div class="form-group">
+                    <label for="insurancePurpose">Primary Purpose for Additional Coverage:</label>
+                    <select id="insurancePurpose" required>
+                        <option value="">Select an option</option>
+                        <option value="marriage">Marriage</option>
+                        <option value="education">Education</option>
+                        <option value="retirement">Retirement</option>
+                        <option value="pure_coverage">Pure Coverage</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="futureFunds">Estimated Amount Required for Future Needs (₹):</label>
+                    <input type="number" id="futureFunds" min="0" placeholder="e.g., 100000">
+                </div>
+                <div class="form-group">
+                    <label for="payoutTimeline">Timeline for Payouts:</label>
+                    <input type="text" id="payoutTimeline" placeholder="e.g., 5-10 years">
+                </div>
+                <div class="form-group">
+                    <label for="additionalPurpose">Additional Details on Your Purpose:</label>
+                    <textarea id="additionalPurpose" rows="3" placeholder="Enter details here..."></textarea>
+                </div>
+
+                <!-- Add-on Benefits -->
+                <h3>Additional Benefits</h3>
+                <div class="form-group">
+                    <label for="addonBenefits">Interested in Add-on Benefits?</label>
+                    <select id="addonBenefits" required>
+                        <option value="">Select an option</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <h3>Health Details</h3>
+                <div class="form-group">
+                    <label for="preExistingConditions">Pre-existing Medical Conditions (if any):</label>
+                    <input type="text" id="preExistingConditions" placeholder="e.g., Diabetes, Hypertension">
+                </div>
+                <div class="form-group">
+                    <label for="healthCondition">Current Health Condition:</label>
+                    <select id="healthCondition" required>
+                        <option value="">Select an option</option>
+                        <option value="excellent">Excellent</option>
+                        <option value="good">Good</option>
+                        <option value="average">Average</option>
+                        <option value="poor">Poor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="familyCoverage">Do you require Family Coverage?</label>
+                    <select id="familyCoverage" required>
+                        <option value="">Select an option</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <!-- Liability Details -->
+                <h3>Dependents Details</h3>
+                <div class="form-group">
+                    <label for="familyMembers">Number of Family Members/Dependents:</label>
+                    <input type="number" id="familyMembers" required min="0" placeholder="e.g., 3">
+                </div>
+                <div class="form-group">
+                    <label for="spouseWorking">Is your spouse employed?</label>
+                    <select id="spouseWorking" required>
+                        <option value="">Select an option</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <h3>Income Details</h3>
+                <div class="form-group">
+                    <label for="loanDetails">Outstanding Loans (Monthly Repayment in ₹):</label>
+                    <input type="number" id="loanDetails" min="0" placeholder="e.g., 500">
+                </div>
+                <div class="form-group">
+                    <label for="monthlyIncome">Monthly Income (₹):</label>
+                    <input type="number" id="monthlyIncome" min="0" placeholder="e.g., 5000">
+                </div>
+                <div class="form-group">
+                    <label for="monthlyExpenses">Monthly Expenditure (₹):</label>
+                    <input type="number" id="monthlyExpenses" min="0" placeholder="e.g., 3000">
+                </div>
+                <div class="form-group">
+                    <label for="savingsInvestments">Savings & Investments (₹):</label>
+                    <input type="number" id="savingsInvestments" min="0" placeholder="e.g., 20000">
+                </div>
+
+                <!-- Purpose & Future Requirements -->
+
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    <button class="chatbot-button" id="chatbotButton">🤖</button>
+
+
+    <!-- Chatbot popup -->
+    <!-- Chatbot popup -->
+    <div class="chatbot-popup" id="chatbotPopup">
+        <div class="chat-header">We’re Here to Help</div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- <div class="message-container bot"><p>Hello! How can I assist you today?</p></div> -->
+        </div>
+        <!-- Auto-Suggestion Buttons -->
+        <div class="suggestions-container">
+            <!-- <button class="suggestion-btn" onclick="fillChatInput('What is the best life insurance for families?')">Best Life Insurance</button>
+        <button class="suggestion-btn" onclick="fillChatInput('How do I claim my insurance?')">Claim Insurance</button>
+        <button class="suggestion-btn" onclick="fillChatInput('What’s the difference between term & whole life insurance?')">Term vs Whole Life</button>
+        <button class="suggestion-btn" onclick="fillChatInput('Which health policy covers pre-existing conditions?')">Pre-existing Conditions</button>
+        <button class="suggestion-btn" onclick="fillChatInput('What is the average cost of car insurance?')">Car Insurance Cost</button>
+        <button class="suggestion-btn" onclick="fillChatInput('Can I get travel insurance for multiple trips?')">Travel Insurance</button> -->
+        </div>
+
+        <!-- Chat Messages -->
+
+
+        <!-- Chat Input Field -->
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your query here...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+
+
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>

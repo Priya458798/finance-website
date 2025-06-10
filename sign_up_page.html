@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - The Investment Edge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #437aae;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #6292c0;
+        }
+
+        .switch-to-sign-in {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .switch-to-sign-in a {
+            color: #437aae;
+            text-decoration: none;
+        }
+
+        .switch-to-sign-in a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Create Your Account</h2>
+    <div class="form-container">
+        <form id="signUpForm" onsubmit="return validateSignUp()">
+            <input type="text" name="username" id="signupUsername" placeholder="Username" required>
+            <input type="email" name="email" id="signupEmail" placeholder="Email" required>
+            <input type="password" name="password" id="signupPassword" placeholder="Password" required>
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <div class="switch-to-sign-in">
+        <p>Already have an account? <a href="sign_in_page.html">Sign In</a></p>
+    </div>
+
+    <script>
+        function validateSignUp() {
+            var password = document.getElementById("signupPassword").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            alert("Sign up successful!"); // Replace with actual sign-up functionality
+            return true;
+        }
+    </script>
+</body>
+</html>

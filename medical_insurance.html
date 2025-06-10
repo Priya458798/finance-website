@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Accident Insurance Form</title>
+    <title>Health & Accident Insurance Form</title>
+    <script src="dataLayer.js"></script>
+    <script>
+         digitalData.product = {
+        event:"Apply",
+        productInfo: {
+            productID: "VEH-PLN-98765X2025",
+            productName: "ACC-INS-2025X001"
+        },
+        category:{
+            productCategory:"Insurance"
+        }
+    };
+    </script>
+    <script src="https://assets.adobedtm.com/81adfcd42355/c48862186763/launch-95e6ae429f23-development.min.js" async></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(rgb(13, 13, 56), rgb(58, 58, 96));
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .logo {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #437aae;
+        }
+
+        .logo span {
+            color: #222;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #437aae;
+        }
+
+        form {
+            background: white;
+            padding: 50px 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 700px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        input[type="text"], input[type="date"], input[type="number"] {
+            width: 100%;
+            padding: 9px;
+            margin-bottom: 20px;
+            border: 1.5px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        select {
+            width: 100%;
+            padding: 9px;
+            margin-bottom: 20px;
+            border: 1.5px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 50px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        button {
+            background-color: #437aae;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #437aae;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot-popup {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: #437aae;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .chat-messages {
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .chat-input button {
+            background: #437aae;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">The <span>Investment</span><span> Edge</span></div>
+        <nav>
+            <a href="home1.html">Home</a>
+            <a href="insurance.html">Insurance</a>
+            <a href="Accounts.html">Accounts</a>
+        </nav>
+    </header>
+ 
+    <!-- Form -->
+    <form action="process_life_insurance.php" method="post">
+        <h1>Medical Insurance</h1>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="permanentAddress">Permanent Address</label>
+                <input type="text" id="permanentAddress" name="permanentAddress" required>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="birthDate">Birth date</label>
+                <input type="date" id="birthDate" name="birthDate" required>
+            </div>
+            <div class="form-group">
+                <label for="zipCode">Zip Code</label>
+                <input type="text" id="zipCode" name="zipCode" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" required>
+            </div>
+        </div>
+
+        <!-- New Fields -->
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="income">Income (Annual)</label>
+                <input type="number" id="income" name="income" required>
+            </div>
+            <div class="form-group">
+                <label for="contactMethod">Preferred Contact Method</label>
+                <select id="contactMethod" name="contactMethod" required>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                    <option value="sms">SMS</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="maritalStatus">Marital Status</label>
+                <select id="maritalStatus" name="maritalStatus" required>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="occupation">Occupation</label>
+                <select id="occupation" name="occupation" required>
+                    <option value="engineer">Engineer</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="developer">Developer</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="employmentStatus">Employment Status</label>
+                <select id="employmentStatus" name="employmentStatus" required>
+                    <option value="employed">Employed</option>
+                    <option value="self-employed">Self-Employed</option>
+                    <option value="unemployed">Unemployed</option>
+                    <option value="retired">Retired</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="familyStatus">Family Status</label>
+                <select id="familyStatus" name="familyStatus" required>
+                    <option value="no-children">No Children</option>
+                    <option value="has-children">Has Children</option>
+                    <option value="Dependents">Dependents</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>    
+
+    <button class="chatbot-button" id="chatbotButton">🤖</button>
+
+    <!-- Chatbot popup -->
+    <div class="chatbot-popup" id="chatbotPopup">
+        <div class="chat-header">Chatbot</div>
+        <div class="chat-messages" id="chatMessages">
+            <p>Hello! How can I assist you today?</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your query here...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
